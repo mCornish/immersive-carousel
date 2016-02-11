@@ -100,4 +100,19 @@ class Immersive_Carousel_Public {
 
 	}
 
+  /**
+	 * The content.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function render() {
+
+		$image_url = get_option( 'immersive_carousel_image_url', '' );
+    if ( is_home() ) {
+      echo '<img src="' . $image_url . '">';
+    }
+
+  }
+
 }

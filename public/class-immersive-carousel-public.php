@@ -109,8 +109,14 @@ class Immersive_Carousel_Public {
 	public function render() {
 
 		$image_url = get_option( 'immersive_carousel_image_url', '' );
+    $text = get_option( 'immersive_carousel_text', '' );
+    $color = get_option( 'immersive_carousel_color', '' );
+
     if ( is_home() ) {
-      echo '<img src="' . $image_url . '">';
+      echo '<div class="carousel__item js-carousel" data-color="' . $color . '">';
+        echo '<img class="carousel__image" src="' . $image_url . '">';
+        echo '<h1>' . $text . '</h1>';
+      echo '</div>';
     }
 
   }

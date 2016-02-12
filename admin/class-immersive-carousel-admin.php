@@ -110,6 +110,17 @@ class Immersive_Carousel_Admin {
 	}
 
   /**
+	 * Add table
+	 *
+	 * @since  1.0.0
+	 */
+  function jal_install () {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "immersivecarousel";
+  }
+
+  /**
 	 * Add an options page under the Settings submenu
 	 *
 	 * @since  1.0.0
@@ -158,7 +169,36 @@ class Immersive_Carousel_Admin {
   		array( 'label_for' => $this->option_name . '_image_url' )
   	);
 
+    add_settings_field(
+  		$this->option_name . '_image_url',
+  		__( 'Image', 'immersive-carousel' ),
+  		array( $this, $this->option_name . '_image_url_cb' ),
+  		$this->plugin_name,
+  		$this->option_name . '_general',
+  		array( 'label_for' => $this->option_name . '_image_url' )
+  	);
+
+    add_settings_field(
+  		$this->option_name . '_text',
+  		__( 'Text', 'immersive-carousel' ),
+  		array( $this, $this->option_name . '_text_cb' ),
+  		$this->plugin_name,
+  		$this->option_name . '_general',
+  		array( 'label_for' => $this->option_name . '_text' )
+  	);
+
+    add_settings_field(
+  		$this->option_name . '_color',
+  		__( 'Color', 'immersive-carousel' ),
+  		array( $this, $this->option_name . '_color_cb' ),
+  		$this->plugin_name,
+  		$this->option_name . '_general',
+  		array( 'label_for' => $this->option_name . '_color' )
+  	);
+
     register_setting( $this->plugin_name, $this->option_name . '_image_url', 'strval' );
+    register_setting( $this->plugin_name, $this->option_name . '_text', 'strval' );
+    register_setting( $this->plugin_name, $this->option_name . '_color', 'strval' );
 
  }
 
@@ -212,4 +252,27 @@ class Immersive_Carousel_Admin {
     <?php
 	}
 
+  /**
+	 * Render the file input field for text option
+	 *
+	 * @since  1.0.0
+	 */
+	public function immersive_carousel_text_cb() {
+    $text = get_option( $this->option_name . '_text' );
+    ?>
+    <input type="text" name="<?php echo $this->option_name . '_text' ?>" id="<?php echo $this->option_name . '_text' ?>" value="<?php echo $text ?>">
+    <?php
+  }
+
+  /**
+	 * Render the file input field for color option
+	 *
+	 * @since  1.0.0
+	 */
+	public function immersive_carousel_color_cb() {
+    $color = get_option( $this->option_name . '_color' );
+    ?>
+    <input type="text" name="<?php echo $this->option_name . '_color' ?>" id="<?php echo $this->option_name . '_color' ?>" value="<?php echo $color ?>">
+    <?php
+  }
 }

@@ -29,4 +29,7 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+  var color = $( '.js-carousel' ).attr( 'data-color' );
+  $( 'body' ).css( 'background-color', color );
+
 })( jQuery );
